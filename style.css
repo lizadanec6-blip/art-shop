@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f1eb;
+  color: #302820;
+}
+
+header {
+  text-align: center;
+  padding: 40px;
+  background-color: #3f332a;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 40px;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.art-card {
+  width: 280px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.art-card:hover {
+  transform: scale(1.05);
+}
+
+.art-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.art-card h3 {
+  margin-bottom: 5px;
+}
+
+.art-card p {
+  font-weight: bold;
+}
+
+.art-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.art-page {
+  max-width: 1000px;
+  margin: auto;
+  padding: 30px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 30px;
+  color: #302820;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.big-art {
+  display: block;
+
+  max-width: 100%;
+  max-height: 85vh;
+
+  margin: 0 auto;
+
+  object-fit: contain;
+}
+
+.art-info {
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.art-info h1 {
+  font-size: 36px;
+}
+
+.art-info h2 {
+  font-size: 25px;
+}
+
+.art-info p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ===== АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ ===== */
+
+@media (max-width: 600px) {
+  header {
+    padding: 25px 15px;
+  }
+
+  header h1 {
+    font-size: 30px;
+  }
+
+  header p {
+    font-size: 15px;
+  }
+
+  main {
+    padding: 20px 15px;
+  }
+
+  .gallery {
+    gap: 20px;
+  }
+
+  .art-card {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .art-card img {
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+  }
+
+  /* Сторінка окремої картини */
+
+  .art-page {
+    padding: 20px 15px;
+  }
+
+  .big-art {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+
+  .art-info {
+    margin: 25px auto;
+  }
+
+  .art-info h1 {
+    font-size: 28px;
+  }
+
+  .art-info h2 {
+    font-size: 22px;
+  }
+
+  .art-info p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .back {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}
