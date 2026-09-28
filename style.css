@@ -1,26 +1,103 @@
-/* ===== ОСНОВА ===== */
+/* ========================================= */
+/*              ОСНОВНІ НАЛАШТУВАННЯ        */
+/* ========================================= */
 
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
   margin: 0;
 
-  background-color: #f3f1e8;
-  color: #332616;
+  width: 100%;
+  height: 100%;
 
-  font-family: "Segoe UI", Arial, sans-serif;
-
-  min-height: 100vh;
+  overflow: hidden;
 }
 
-/* ===== ВЕРХНЄ МЕНЮ ===== */
+body {
+  background-color: #f3f1e8;
+
+  color: #332616;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+
+  position: relative;
+}
+
+/* ========================================= */
+/*              КВІТИ НА ФОНІ               */
+/* ========================================= */
+
+.background-flowers {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  pointer-events: none;
+
+  z-index: 1;
+}
+
+.flower {
+  position: absolute;
+
+  display: block;
+
+  opacity: 0.48;
+}
+
+/* Квітка справа зверху */
+
+.flower-top-right {
+  width: 430px;
+
+  top: -70px;
+  right: -115px;
+
+  transform: rotate(-8deg);
+}
+
+/* Квітка справа знизу */
+
+.flower-middle-right {
+  width: 400px;
+
+  right: -210px;
+  bottom: -220px;
+
+  transform: rotate(-10deg);
+}
+
+/* Квітка зліва знизу */
+
+.flower-bottom-left {
+  width: 430px;
+
+  left: -150px;
+  bottom: -170px;
+
+  transform: scaleX(-1) rotate(-10deg);
+}
+
+/* ========================================= */
+/*                  ШАПКА                   */
+/* ========================================= */
 
 .header {
+  width: 100%;
   height: 105px;
 
   display: flex;
+
   align-items: center;
   justify-content: space-between;
 
@@ -29,48 +106,88 @@ body {
   border-bottom: 1px solid #768064;
 
   position: relative;
+
+  /*
+       Прозорий фон потрібен для того,
+       щоб квіти було видно в області меню.
+    */
+
+  background-color: transparent;
+
+  z-index: 100;
 }
 
-/* посилання Gallery / Stock */
+/* ========================================= */
+/*              GALLERY / STOCK             */
+/* ========================================= */
 
 .navigation {
   display: flex;
+
+  align-items: center;
+
   gap: 90px;
 }
 
 .navigation a {
   color: #332616;
+
   text-decoration: none;
 
-  font-family: Georgia, serif;
-  font-size: 21px;
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 25px;
   font-weight: 400;
 
   letter-spacing: 1px;
 
-  transition: 0.2s;
+  transition: opacity 0.2s ease;
 }
 
 .navigation a:hover {
   opacity: 0.6;
 }
 
-/* підкреслення активної сторінки */
+/* Підкреслення активної сторінки */
 
 .navigation .active {
   text-decoration: underline;
+
   text-underline-offset: 6px;
 }
 
-/* ===== КНОПКА МЕНЮ ===== */
+/* ========================================= */
+/*                 КНОПКА ☰                 */
+/* ========================================= */
+
+.menu {
+  position: relative;
+
+  z-index: 10000;
+}
+
+/* checkbox нам не потрібно бачити */
+
+#menu-toggle {
+  display: none;
+}
+
+/* три лінії */
 
 .menu-button {
   width: 45px;
+
   display: flex;
+
   flex-direction: column;
+
   gap: 8px;
 
   cursor: pointer;
+
+  position: relative;
+
+  z-index: 10001;
 }
 
 .menu-button span {
@@ -82,90 +199,647 @@ body {
   background-color: #332616;
 }
 
-/* ===== ГАЛЕРЕЯ ===== */
+/* ========================================= */
+/*              БОКОВЕ МЕНЮ                 */
+/* ========================================= */
 
-.gallery {
-  width: 85%;
-  max-width: 1200px;
+.side-menu {
+  position: fixed;
 
-  margin: 80px auto;
+  top: 0;
 
-  display: grid;
+  /*
+       Поки меню закрите —
+       воно знаходиться за екраном.
+    */
 
-  grid-template-columns: repeat(2, 1fr);
+  right: -360px;
 
-  column-gap: 130px;
-  row-gap: 90px;
-}
+  width: 300px;
+  height: 100vh;
 
-/* ===== КАРТИНА ===== */
+  padding: 100px 35px 40px;
 
-.art-card {
-  text-decoration: none;
-  color: #332616;
+  /*
+       Напівпрозорий оливковий фон.
+    */
+
+  background-color: rgba(84, 81, 54, 0.78);
+
+  /*
+       Те, що знаходиться за меню,
+       трохи розмивається.
+    */
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  color: #f5f1e8;
 
   text-align: center;
+
+  /*
+       Найвищий шар сайту.
+    */
+
+  z-index: 99999;
+
+  transition: right 0.4s ease;
+
+  overflow-y: auto;
 }
 
-/* фото */
+/* ВІДКРИТЕ МЕНЮ */
 
-.art-card img {
-  width: 100%;
-  height: 420px;
-
-  object-fit: cover;
-
-  border-radius: 18px;
-
-  display: block;
-
-  transition: 0.3s;
+#menu-toggle:checked ~ .side-menu {
+  right: 0;
 }
 
-/* невелике збільшення */
+/* ========================================= */
+/*             ХРЕСТИК ×                    */
+/* ========================================= */
 
-.art-card:hover img {
-  transform: scale(1.015);
+.close-menu {
+  position: absolute;
+
+  top: 25px;
+  right: 30px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 35px;
+  font-weight: 200;
+
+  color: #ffffff;
+
+  cursor: pointer;
 }
 
-/* назва картини */
+/* ========================================= */
+/*                AUTHOR                    */
+/* ========================================= */
 
-.art-card p {
-  margin: 15px 0 0;
+.menu-title {
+  margin: 0 0 35px;
 
-  font-family: Georgia, serif;
+  font-family: "Cormorant Garamond", serif;
 
-  font-size: 20px;
+  font-size: 34px;
   font-weight: 400;
 
   letter-spacing: 1px;
 }
 
-/* ========================= */
-/*          ТЕЛЕФОН          */
-/* ========================= */
+/* Instagram */
+
+.menu-text {
+  margin: 0 0 8px;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.instagram {
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.instagram:hover {
+  text-decoration: underline;
+}
+
+/* ========================================= */
+/*                 МОВА                     */
+/* ========================================= */
+
+.language-title {
+  margin-top: 55px;
+  margin-bottom: 15px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.languages {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+}
+
+.languages button {
+  border: none;
+  background: none;
+
+  padding: 0;
+
+  color: #ffffff;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.languages button:hover {
+  transform: scale(1.12);
+  opacity: 0.7;
+}
+
+.languages a:hover {
+  transform: scale(1.12);
+}
+
+/* ========================================= */
+/*        ОБЛАСТЬ ПРОКРУТКИ ГАЛЕРЕЇ         */
+/* ========================================= */
+
+.gallery-scroll {
+  position: relative;
+
+  /*
+       Висота екрана мінус висота шапки.
+    */
+
+  height: calc(100vh - 105px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  z-index: 2;
+
+  /*
+       Плавна прокрутка.
+    */
+
+  scroll-behavior: smooth;
+
+  /*
+       Firefox — ховаємо scrollbar.
+    */
+
+  scrollbar-width: none;
+}
+
+/* Chrome / Edge / Safari */
+
+.gallery-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================= */
+/*                  ГАЛЕРЕЯ                 */
+/* ========================================= */
+
+.gallery {
+  width: 80%;
+
+  max-width: 1050px;
+
+  margin: 0 auto;
+
+  padding: 80px 0 120px;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  column-gap: 150px;
+  row-gap: 85px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+/* ========================================= */
+/*               КАРТКА КАРТИНИ             */
+/* ========================================= */
+
+.art-card {
+  display: block;
+
+  min-width: 0;
+
+  color: #332616;
+
+  text-decoration: none;
+
+  text-align: center;
+
+  position: relative;
+}
+
+/* Фото */
+
+.art-card img {
+  display: block;
+
+  width: 100%;
+  height: 360px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Наведення */
+
+.art-card:hover img {
+  transform: scale(1.015);
+}
+
+/* Назва картини */
+
+.art-card p {
+  margin: 15px 0 0;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 24px;
+  font-weight: 400;
+
+  letter-spacing: 1px;
+}
+
+/* ========================================= */
+/*          СТОРІНКА ОКРЕМОЇ КАРТИНИ        */
+/* ========================================= */
+
+.painting-page {
+  position: relative;
+
+  height: calc(100vh - 105px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 70px 20px 120px;
+
+  z-index: 2;
+
+  scrollbar-width: none;
+}
+
+.painting-page::-webkit-scrollbar {
+  display: none;
+}
+
+/* Центральний блок */
+
+.painting-container {
+  position: relative;
+
+  width: 70%;
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  text-align: center;
+
+  z-index: 2;
+}
+
+/* Велике фото */
+
+.painting-image {
+  display: block;
+
+  width: 100%;
+  max-height: 70vh;
+
+  object-fit: contain;
+
+  margin: 0 auto;
+
+  border-radius: 18px;
+}
+
+/* Назва */
+
+.painting-title {
+  margin: 25px 0 40px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 34px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+}
+
+/* Опис */
+
+.painting-description {
+  width: 80%;
+
+  max-width: 600px;
+
+  margin: 0 auto;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 16px;
+  font-weight: 300;
+
+  line-height: 1.8;
+}
+
+.painting-description p {
+  margin: 17px 0;
+}
+
+/* Рік */
+
+.painting-year {
+  margin-top: 55px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 25px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================
+   ОДНАКОВИЙ ВИГЛЯД УСІХ СТОРІНОК КАРТИН
+========================================= */
+
+.painting-page {
+  height: calc(100vh - 105px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 60px 20px 100px;
+
+  position: relative;
+  z-index: 2;
+
+  scrollbar-width: none;
+}
+
+.painting-page::-webkit-scrollbar {
+  display: none;
+}
+
+.painting-container {
+  width: 100%;
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+/* САМА КАРТИНА */
+
+.painting-image {
+  display: block;
+
+  width: auto;
+  max-width: 650px;
+
+  height: auto;
+  max-height: 540px;
+
+  margin: 0 auto;
+
+  object-fit: contain;
+
+  border-radius: 0;
+}
+
+/* НАЗВА */
+
+.painting-title {
+  margin: 25px 0 45px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 34px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+}
+
+/* ОПИС */
+
+.painting-description {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 16px;
+  font-weight: 300;
+
+  line-height: 1.8;
+
+  text-align: center;
+}
+
+.painting-description p {
+  margin: 20px 0;
+}
+
+/* РІК */
+
+.painting-year {
+  margin-top: 50px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 23px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+} /* =========================================
+   ОДНАКОВИЙ ВИГЛЯД УСІХ СТОРІНОК КАРТИН
+========================================= */
+
+.painting-page {
+  height: calc(100vh - 105px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  padding: 60px 20px 100px;
+
+  position: relative;
+  z-index: 2;
+
+  scrollbar-width: none;
+}
+
+.painting-page::-webkit-scrollbar {
+  display: none;
+}
+
+.painting-container {
+  width: 100%;
+  max-width: 800px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+/* САМА КАРТИНА */
+
+.painting-image {
+  display: block;
+
+  width: auto;
+  max-width: 650px;
+
+  height: auto;
+  max-height: 540px;
+
+  margin: 0 auto;
+
+  object-fit: contain;
+
+  border-radius: 0;
+}
+
+/* НАЗВА */
+
+.painting-title {
+  margin: 25px 0 45px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 34px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+}
+
+/* ОПИС */
+
+.painting-description {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+
+  font-family: "Montserrat", sans-serif;
+
+  font-size: 16px;
+  font-weight: 300;
+
+  line-height: 1.8;
+
+  text-align: center;
+}
+
+.painting-description p {
+  margin: 20px 0;
+}
+
+/* РІК */
+
+.painting-year {
+  margin-top: 50px;
+
+  font-family: "Cormorant Garamond", serif;
+
+  font-size: 23px;
+  font-weight: 400;
+
+  letter-spacing: 2px;
+}
+
+/* Кнопка Back */
+.back-button {
+  position: fixed;
+  top: 120px;
+  left: 7%;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #332616;
+  text-decoration: none;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: 1px;
+
+  z-index: 50;
+
+  transition: opacity 0.2s ease;
+}
+
+.back-button span:first-child {
+  font-size: 25px;
+  line-height: 1;
+}
+
+.back-button:hover {
+  color: #332616;
+  opacity: 0.6;
+}
+
+.back-button:hover span:first-child {
+  transform: translateX(-4px);
+}
+
+/* ========================================= */
+/*                 ТЕЛЕФОН                  */
+/* ========================================= */
 
 @media (max-width: 650px) {
+  /* ---------- ШАПКА ---------- */
+
   .header {
     height: 75px;
 
     padding: 0 20px;
   }
 
-  /* меню */
+  /* Gallery / Stock */
 
   .navigation {
-    gap: 35px;
+    gap: 30px;
   }
 
   .navigation a {
-    font-size: 16px;
+    font-size: 18px;
   }
 
-  /* три лінії */
+  /* ---------- ☰ ---------- */
 
   .menu-button {
     width: 32px;
+
     gap: 6px;
   }
 
@@ -173,20 +847,53 @@ body {
     height: 1.5px;
   }
 
-  /* галерея */
+  /* ---------- БОКОВЕ МЕНЮ ---------- */
+
+  .side-menu {
+    width: 70%;
+    max-width: 280px;
+
+    right: -100%;
+
+    padding: 90px 25px 30px;
+  }
+
+  #menu-toggle:checked ~ .side-menu {
+    right: 0;
+  }
+
+  .menu-title {
+    font-size: 29px;
+  }
+
+  .instagram {
+    font-size: 21px;
+  }
+
+  .language-title {
+    font-size: 21px;
+
+    margin-top: 45px;
+  }
+
+  /* ---------- ГАЛЕРЕЯ ---------- */
+
+  .gallery-scroll {
+    height: calc(100vh - 75px);
+  }
 
   .gallery {
     width: 88%;
 
-    margin: 45px auto;
+    padding: 45px 0 90px;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
     column-gap: 25px;
     row-gap: 50px;
   }
 
-  /* фото */
+  /* Фото */
 
   .art-card img {
     height: 210px;
@@ -194,11 +901,72 @@ body {
     border-radius: 12px;
   }
 
-  /* назви */
-
   .art-card p {
     margin-top: 10px;
 
-    font-size: 15px;
+    font-size: 17px;
+  }
+
+  /* ---------- КВІТИ ---------- */
+
+  .flower-top-right {
+    width: 240px;
+
+    top: -20px;
+    right: -105px;
+  }
+
+  .flower-middle-right {
+    width: 250px;
+
+    right: -140px;
+    bottom: -90px;
+  }
+
+  .flower-bottom-left {
+    width: 260px;
+
+    left: -145px;
+    bottom: -100px;
+  }
+
+  /* ---------- СТОРІНКА КАРТИНИ ---------- */
+
+  .painting-page {
+    height: calc(100vh - 75px);
+
+    padding: 40px 15px 90px;
+  }
+
+  .painting-container {
+    width: 100%;
+  }
+
+  .painting-image {
+    width: 100%;
+
+    max-height: 65vh;
+
+    border-radius: 12px;
+  }
+
+  .painting-title {
+    margin: 20px 0 30px;
+
+    font-size: 28px;
+  }
+
+  .painting-description {
+    width: 90%;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .painting-year {
+    margin-top: 40px;
+
+    font-size: 22px;
   }
 }

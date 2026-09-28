@@ -2,34 +2,111 @@
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Захід сонця</title>
+
+    <title>Art Gallery</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <main class="art-page">
-      <a href="index.html" class="back">← Назад до галереї</a>
+    <!-- КВІТИ НА ФОНІ -->
+    <div class="background-flowers">
+      <img src="images/flowers.png" class="flower flower-top-right" alt="" />
+      <img src="images/flowers.png" class="flower flower-middle-right" alt="" />
+      <img src="images/flowers.png" class="flower flower-bottom-left" alt="" />
+    </div>
+    <!-- ВЕРХНЄ МЕНЮ -->
 
-      <img class="big-art" src="images/art2.PNG" alt="Захід сонця" />
+    <header class="header">
+      <nav class="navigation">
+        <a href="index.html" class="active" data-lang="gallery">Gallery</a>
+        <a href="stock.html" data-lang="stock">Stock</a>
+      </nav>
 
-      <div class="art-info">
-        <h1>Літо</h1>
+      <!-- БОКОВЕ МЕНЮ -->
 
-        <h2>Продано</h2>
+      <div class="menu">
+        <input type="checkbox" id="menu-toggle" />
+
+        <label for="menu-toggle" class="menu-button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+
+        <div class="side-menu">
+          <label for="menu-toggle" class="close-menu"> × </label>
+
+          <p class="menu-title" data-lang="author">Author</p>
+
+          <p class="menu-text" data-lang="instagram">Instagram:</p>
+
+          <a href="#" class="instagram"> @your.instagram </a>
+
+          <p class="language-title" data-lang="language">Change language</p>
+
+          <div class="languages">
+            <button type="button" onclick="changeLanguage('ua')">UA</button>
+
+            <button type="button" onclick="changeLanguage('en')">US</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="index.html" class="back-button">
+      <span>←</span>
+      <span data-lang="back">Back</span>
+    </a>
+
+    <!-- СТОРІНКА КАРТИНИ -->
+
+    <main class="painting-page">
+      <div class="painting-container">
+        <img src="images/art2.PNG" alt="Літо" class="painting-image" />
+
+        <h1 class="painting-title" data-lang="art2-title">Літо</h1>
+
+        <div class="painting-description">
+          <p data-lang="art2-description">
+            Авторська картина, виконана вручну. Робота передає атмосферу теплого
+            літнього вечора та спокою.
+          </p>
+
+          <p>
+            <b data-lang="size">Розмір:</b>
+            40 × 50 <span data-lang="cm">cm</span>
+          </p>
+
+          <p>
+            <b data-lang="materials">Матеріали:</b>
+            <span data-lang="art1-materials">полотно, олійні фарби</span>
+          </p>
+
+          <p>
+            <b data-lang="price">Ціна:</b>
+            1200 <span data-lang="currency">UAH</span>
+          </p>
+        </div>
 
         <p>
-          Авторська картина, виконана вручну. Робота передає атмосферу теплого
-          літнього вечора та спокою перед заходом сонця.
+          <b data-lang="year">Рік:</b>
+          2026
         </p>
-
-        <p><b>Розмір:</b> 40 × 50 см</p>
-
-        <p><b>Матеріали:</b> полотно, олійні фарби</p>
-
-        <p><b>Рік:</b> 2026</p>
       </div>
     </main>
+    <script src="language.js"></script>
   </body>
 </html>
