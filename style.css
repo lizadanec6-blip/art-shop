@@ -1,186 +1,204 @@
+/* ===== ОСНОВА ===== */
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f1eb;
-  color: #302820;
+
+  background-color: #f3f1e8;
+  color: #332616;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+
+  min-height: 100vh;
 }
 
-header {
-  text-align: center;
-  padding: 40px;
-  background-color: #3f332a;
-  color: white;
+/* ===== ВЕРХНЄ МЕНЮ ===== */
+
+.header {
+  height: 105px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 7%;
+
+  border-bottom: 1px solid #768064;
+
+  position: relative;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 40px;
+/* посилання Gallery / Stock */
+
+.navigation {
+  display: flex;
+  gap: 90px;
 }
 
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 40px;
+.navigation a {
+  color: #332616;
+  text-decoration: none;
+
+  font-family: Georgia, serif;
+  font-size: 21px;
+  font-weight: 400;
+
+  letter-spacing: 1px;
+
+  transition: 0.2s;
 }
 
-h2 {
-  text-align: center;
+.navigation a:hover {
+  opacity: 0.6;
 }
+
+/* підкреслення активної сторінки */
+
+.navigation .active {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+/* ===== КНОПКА МЕНЮ ===== */
+
+.menu-button {
+  width: 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.menu-button span {
+  display: block;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: #332616;
+}
+
+/* ===== ГАЛЕРЕЯ ===== */
 
 .gallery {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
+  width: 85%;
+  max-width: 1200px;
+
+  margin: 80px auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  column-gap: 130px;
+  row-gap: 90px;
 }
 
+/* ===== КАРТИНА ===== */
+
 .art-card {
-  width: 280px;
-  background-color: white;
-  padding: 15px;
-  border-radius: 10px;
-  cursor: pointer;
+  text-decoration: none;
+  color: #332616;
+
+  text-align: center;
+}
+
+/* фото */
+
+.art-card img {
+  width: 100%;
+  height: 420px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+
+  display: block;
 
   transition: 0.3s;
 }
 
-.art-card:hover {
-  transform: scale(1.05);
+/* невелике збільшення */
+
+.art-card:hover img {
+  transform: scale(1.015);
 }
 
-.art-card img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 7px;
-}
-
-.art-card h3 {
-  margin-bottom: 5px;
-}
+/* назва картини */
 
 .art-card p {
-  font-weight: bold;
+  margin: 15px 0 0;
+
+  font-family: Georgia, serif;
+
+  font-size: 20px;
+  font-weight: 400;
+
+  letter-spacing: 1px;
 }
 
-.art-card {
-  text-decoration: none;
-  color: inherit;
-}
+/* ========================= */
+/*          ТЕЛЕФОН          */
+/* ========================= */
 
-.art-page {
-  max-width: 1000px;
-  margin: auto;
-  padding: 30px;
-}
+@media (max-width: 650px) {
+  .header {
+    height: 75px;
 
-.back {
-  display: inline-block;
-  margin-bottom: 30px;
-  color: #302820;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.back:hover {
-  text-decoration: underline;
-}
-
-.big-art {
-  display: block;
-
-  max-width: 100%;
-  max-height: 85vh;
-
-  margin: 0 auto;
-
-  object-fit: contain;
-}
-
-.art-info {
-  max-width: 700px;
-  margin: 40px auto;
-}
-
-.art-info h1 {
-  font-size: 36px;
-}
-
-.art-info h2 {
-  font-size: 25px;
-}
-
-.art-info p {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-/* ===== АДАПТАЦІЯ ДЛЯ ТЕЛЕФОНІВ ===== */
-
-@media (max-width: 600px) {
-  header {
-    padding: 25px 15px;
+    padding: 0 20px;
   }
 
-  header h1 {
-    font-size: 30px;
+  /* меню */
+
+  .navigation {
+    gap: 35px;
   }
 
-  header p {
-    font-size: 15px;
+  .navigation a {
+    font-size: 16px;
   }
 
-  main {
-    padding: 20px 15px;
+  /* три лінії */
+
+  .menu-button {
+    width: 32px;
+    gap: 6px;
   }
+
+  .menu-button span {
+    height: 1.5px;
+  }
+
+  /* галерея */
 
   .gallery {
-    gap: 20px;
+    width: 88%;
+
+    margin: 45px auto;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    column-gap: 25px;
+    row-gap: 50px;
   }
 
-  .art-card {
-    width: 100%;
-    max-width: 350px;
-  }
+  /* фото */
 
   .art-card img {
-    height: auto;
-    max-height: 450px;
-    object-fit: cover;
+    height: 210px;
+
+    border-radius: 12px;
   }
 
-  /* Сторінка окремої картини */
+  /* назви */
 
-  .art-page {
-    padding: 20px 15px;
-  }
+  .art-card p {
+    margin-top: 10px;
 
-  .big-art {
-    width: 100%;
-    height: auto;
-    max-height: 80vh;
-    object-fit: contain;
-  }
-
-  .art-info {
-    margin: 25px auto;
-  }
-
-  .art-info h1 {
-    font-size: 28px;
-  }
-
-  .art-info h2 {
-    font-size: 22px;
-  }
-
-  .art-info p {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .back {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 15px;
   }
 }
